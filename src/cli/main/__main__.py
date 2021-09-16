@@ -366,7 +366,7 @@ def _help_and_exit(
 
 
 def cli(args: List[str]) -> None:
-    _log(f"Makes v{VERSION}-{sys.platform}")
+    _log(f"Makes v{VERSION}-{sys.platform} (IOHK)")
     _log()
     if not args[1:]:
         _help_and_exit()
