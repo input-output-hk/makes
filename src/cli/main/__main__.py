@@ -69,7 +69,7 @@ if K8S_COMPAT:
     _log("Using feature flag: K8S_COMPAT")
     _log()
 
-NIX_STABLE: bool = not bool(environ.get("NIX_UNSTABLE"))
+NIX_STABLE: bool = bool(environ.get("NIX_STABLE"))
 if not NIX_STABLE:
     _log("Using feature flag: NIX_UNSTABLE")
     _log()
