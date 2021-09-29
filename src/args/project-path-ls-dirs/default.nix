@@ -10,4 +10,4 @@ let
   dirs = filterAttrs isDir ls;
   dirNames = builtins.attrNames dirs;
 in
-builtins.map builtins.unsafeDiscardStringContext dirNames
+dirNames
