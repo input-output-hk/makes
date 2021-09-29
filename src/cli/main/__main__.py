@@ -206,9 +206,9 @@ def _nix_build(
         *_if(NIX_STABLE, "--argstr", "makesSrc", __MAKES_SRC__),
         *_if(NIX_STABLE, "--argstr", "projectSrc", head),
         *_if(NIX_STABLE, "--attr", attr),
+        *_if(NIX_STABLE, "--option", "narinfo-cache-negative-ttl", "1"),
+        *_if(NIX_STABLE, "--option", "narinfo-cache-positive-ttl", "1"),
         *["--option", "cores", "0"],
-        *["--option", "narinfo-cache-negative-ttl", "1"],
-        *["--option", "narinfo-cache-positive-ttl", "1"],
         *["--option", "max-jobs", "auto"],
         *["--option", "substituters", substituters],
         *["--option", "trusted-public-keys", trusted_pub_keys],
@@ -225,7 +225,10 @@ def _get_head(src: str) -> str:
     # Checkout repository HEAD into a temporary directory
     # This is nice for reproducibility and security,
     # files not in the HEAD commit are left out of the build inputs
-    head: str = _clone_src(src)
+    if NIX_STABLE:
+      head: str = _clone_src(src)
+    else:
+      return src
 
     # Applies only to local repositories
     if is_src_local(src):
