@@ -207,7 +207,6 @@ def _nix_build(
         *_if(NIX_STABLE, "--argstr", "projectSrc", head),
         *_if(NIX_STABLE, "--attr", attr),
         *["--option", "cores", "0"],
-        *_if(not NIX_STABLE, "--impure"),
         *["--option", "narinfo-cache-negative-ttl", "1"],
         *["--option", "narinfo-cache-positive-ttl", "1"],
         *["--option", "max-jobs", "auto"],
